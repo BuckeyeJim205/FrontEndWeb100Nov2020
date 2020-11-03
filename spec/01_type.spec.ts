@@ -13,7 +13,7 @@ describe('types', () => {
         });
 
         it('some more details about let', () => {
-            let a: number | string; //union type
+            let a: number | string; // union type
             a = 'Pizza';
 
             a = 42;
@@ -41,7 +41,7 @@ describe('types', () => {
 
             it('delimiting strings', () => {
                 const message1 = 'Hello How Are You?';
-                const message2 = "Hello How Are You?";
+                const message2 = 'Hello How Are You?';
                 expect(message1).toEqual(message2);
             });
             it('has format strings, too', () => {
@@ -102,5 +102,35 @@ describe('types', () => {
                 expect(info[1]).toBe(9);
             });
         });
+    });
+});
+describe('object literals', () => {
+    it('structural typing with objects', () => {
+
+    });
+
+});
+describe('function literals', () => {
+
+    it('has three wayss but we use two', () => {
+        // named vs anonymous
+
+        expect(add(7, 4)).toBe(11);
+        // named - can be forward referenced
+        function add(a: number, b: number): number {
+            return a + b;
+        }
+
+        // anonymous - cannot be forward referenced
+        const subtract = function (a: number, b: number): number {
+            return a - b;
+        }
+
+        type MathOp = (x: number, y: number) => number; // a MathOp is any function that takes two numbers and returns a number
+        const multiply = (a: number, b: number): number => a * b;
+
+        expect(add(2, 3)).toBe(5);
+        expect(subtract(10, 2)).toBe(8);
+        expect(multiply(3, 3)).toBe(9);
     });
 });
